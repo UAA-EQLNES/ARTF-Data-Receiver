@@ -21,7 +21,7 @@ def main():
     # the serial baud rate to 9600 and make sure the shield is running at
     # 4800. An alternative is to increase buffer size in the Arduino SoftwareSerial
     # library.
-    parser = argparse.ArgumentParser(description='Run SMS Data Logger.')
+    parser = argparse.ArgumentParser(description='Run SMS Data Receiver.')
     parser.add_argument('-p', '--port', help='Serial port', default='/dev/ttyS1')
     parser.add_argument('-b', '--baudrate', type=int, help='Baudrate of Sim900 GSM shield', default=115200)
     args = parser.parse_args()
@@ -67,7 +67,7 @@ def main():
     sleep(2)
 
     print ""
-    print "Sim900 SMS Data Logger"
+    print "Sim900 SMS Data Receiver"
     print "----------------------"
     print ""
     print "Press CTRL+C to stop the program."

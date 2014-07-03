@@ -4,13 +4,13 @@ HOST = '127.0.0.1'
 PORT = 5000
 TEMPLATE = 'flot.html'
 
-SITE_TITLE = "UA Sensors Visualization Demo"
+SITE_TITLE = "ARTF Sensors Visualization Demo"
 
 # Refresh interval in minutes
 REFRESH_INTERVAL = 20
 
 # Database location
-SQLITE3_DB_PATH = 'data/ua_sensors_demo.sqlite3'
+SQLITE3_DB_PATH = 'data/artf_sensors_demo.sqlite3'
 
 
 # Sensor type mapping
@@ -46,6 +46,6 @@ SENSOR_NAMES = {
 
 
 # Data logger error logging
-DATA_LOGGER_ERROR_FILE = 'log/ua_sensors_demo.log'
+DATA_LOGGER_ERROR_FILE = 'log/artf_sensors_demo.log'
 DATA_LOGGER_ERROR_LEVEL = 'INFO'
 DATA_LOGGER_ERROR_FORMAT = '%(levelname)s - %(message)s'
