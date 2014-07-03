@@ -1,0 +1,9 @@
+*.pyc
+.webassets-cache
+min.js
+min.css
+jquery.min.js
+venv
+data
+log
+settings.cfg
