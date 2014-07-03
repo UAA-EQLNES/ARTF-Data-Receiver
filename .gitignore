@@ -7,3 +7,4 @@ venv
 data
 log
 settings.cfg
+dummy_data.csv
