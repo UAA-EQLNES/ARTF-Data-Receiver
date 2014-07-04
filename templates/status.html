@@ -9,7 +9,6 @@
         {% endassets %}
         <style>
         body {
-            min-height: 2000px;
             padding-top: 70px;
         }
         </style>
@@ -22,7 +21,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col col-md-10 col-md-offset-1">
-                    <h3 style="text-align:center;">SMS Data Receiver Log</h3>
+                    <h3>SMS Data Receiver Log</h3>
                     <br />
                     <table id="log-table" class="table table-striped">
 
@@ -37,10 +36,16 @@
         {% endassets %}
 
         <script>
+
+        var currentDate = new Date();
+        $('#last_updated_at').text(currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString());
+
         // Refresh every X minutes. Need to use millis.
-        var refreshInterval = 1 * 60 * 1000;
+        var refreshInterval = {{refresh_interval}} * 60 * 1000;
         setInterval(function() {
             $.get('/api/status', function(html) {
+                var currentDate = new Date();
+                $('#last_updated_at').text(currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString());
                 $('#log-table').html(html);
             }, 'html');
         }, refreshInterval);
