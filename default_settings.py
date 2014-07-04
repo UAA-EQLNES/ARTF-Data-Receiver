@@ -6,9 +6,6 @@ PORT = 5000
 SITE_TITLE = "ARTF Data Viewer Demo"
 
 
-UPDATE_SCRIPT_PATH = '/home/ubuntu/ARTF-Data-Receiver/update-scripts/pcduino-update.sh'
-
-
 # Refresh interval in minutes
 REFRESH_INTERVAL = 20
 

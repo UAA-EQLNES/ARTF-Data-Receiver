@@ -5,7 +5,6 @@ HOME_DIR=/home/ubuntu/ARTF-Data-Receiver
 DUMMY_DATA_PATH=/tmp/dummy.csv
 DUMMY_DB_PATH=$HOME_DIR/data/artf_sensors_demo.sqlite3
 INSTALL_FOLDER=$HOME_DIR/install-scripts/pcduino-assets
-SUDO_SERVICE_CONF=artf-permissions.conf
 CHART_DESKTOP_CONF=artf-data-viewer.desktop
 RECEIVER_SERVICE=artf-data-receiver
 VIEWER_SERVICE=artf-data-viewer
@@ -44,12 +43,6 @@ python $HOME_DIR/csv_importer.py -c $DUMMY_DATA_PATH -d $DUMMY_DB_PATH
 
 echo "Removing dummy data csv file..."
 rm $DUMMY_DATA_PATH
-
-echo "Update sudo permissions..."
-cp $INSTALL_FOLDER/$SUDO_SERVICE_CONF /tmp/$SUDO_SERVICE_CONF
-sudo chown root:root /tmp/$SUDO_SERVICE_CONF
-sudo chmod 0440 /tmp/$SUDO_SERVICE_CONF
-sudo mv 0440 /tmp/$SUDO_SERVICE_CONF /etc/sudoers.d/$SUDO_SERVICE_CONF
 
 echo "Adding configuration for data receiver service..."
 sudo cp $INSTALL_FOLDER/$RECEIVER_SERVICE.conf /etc/init/$RECEIVER_SERVICE.conf

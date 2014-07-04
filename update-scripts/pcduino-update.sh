@@ -12,7 +12,7 @@ git pull
 
 echo "Resarting ARTF Data Receiver Service..."
 sudo stop $RECEIVER_SERVICE
-sudo start $RECEIVER_SERVICE
+sudo stop $RECEIVER_SERVICE
 
 echo "Resarting ARTF Data Viewer Service..."
 sudo stop $VIEWER_SERVICE

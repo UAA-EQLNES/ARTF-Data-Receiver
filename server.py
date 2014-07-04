@@ -140,15 +140,6 @@ def show_dashboard():
     )
 
 
-@app.route('/updates', methods=['GET', 'POST'])
-def show_updates():
-    if request.method == 'POST':
-        rc = subprocess.call(app.config['UPDATE_SCRIPT_PATH'])
-        return render_template('update.html', site_title=app.config['SITE_TITLE'], flash=rc)
-    else:
-        return render_template('update.html', site_title=app.config['SITE_TITLE'])
-
-
 @app.route('/status')
 def show_status():
     return render_template('status.html',
