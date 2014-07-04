@@ -9,7 +9,7 @@
         {% endassets %}
         <style>
         body {
-            padding-top: 70px;
+            padding-top: 100px;
         }
         </style>
 
@@ -21,9 +21,10 @@
         <div class="container">
             <div class="row">
                 <div class="col col-md-8 col-md-offset-2">
-                    <h3>SMS Data Receiver Log</h3>
-                    <br />
                     <table class="table table-striped table-bordered">
+                        <tr class="info">
+                            <th>SMS Data Receiver Log</th>
+                        </tr>
                         <tbody id="log-table">
                         {% include 'log_table.html' %}
                         </tbody>

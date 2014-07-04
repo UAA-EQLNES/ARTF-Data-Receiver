@@ -24,8 +24,8 @@
                     <h3>Current values</h3>
                     <br />
                     <table id="dashboard-table" class="table table-bordered">
-                        <tr>
-                            <th>Sensor Id/Name</th>
+                        <tr class="info">
+
                             <th>Sensor Type</th>
                             <th>Value</th>
                             <th>Units</th>
@@ -33,13 +33,11 @@
                         </tr>
                         {% for key, meta in data.items() %}
                         <tr class="active">
-                            <th>{{ sensor_names.get(key, key) }}</th>
-                            <th colspan="4"></th>
+                            <th colspan="4"><strong>{{ sensor_names.get(key, key) }}</strong></th>
                         </tr>
 
                         {% for values in meta['data'] %}
                             <tr>
-                                <td></td>
                                 <td>{{ values['value_type'] }}</td>
                                 <td>{{ values['value'] }}</td>
                                 <td>{{ values['value_unit'] }}</td>
