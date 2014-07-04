@@ -25,13 +25,14 @@
                     <h3 style="text-align:center;">SMS Data Receiver Log</h3>
                     <br />
                     <table id="log-table" class="table table-striped">
+
                         {% include 'log_table.html' %}
                     </table>
                 </div>
             </div>
         </div>
 
-        {% assets "js_log" %}
+        {% assets "js_jquery" %}
         <script type="text/javascript" src="{{ ASSET_URL }}"></script>
         {% endassets %}
 
