@@ -39,7 +39,7 @@ echo "Generating dummy data for demo..."
 python $HOME_DIR/dummy_data.py -o $DUMMY_DATA_PATH
 
 echo "Importing dummy data into demo database..."
-python $HOME_DIR/csv_importer.py -c $DUMMY_DATA_PATH -o $DUMMY_DB_PATH
+python $HOME_DIR/csv_importer.py -c $DUMMY_DATA_PATH -d $DUMMY_DB_PATH
 
 echo "Removing dummy data csv file..."
 rm $DUMMY_DATA_PATH
