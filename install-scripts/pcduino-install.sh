@@ -27,7 +27,7 @@ echo "Upgrading pip..."
 sudo pip install upgrade pip > /dev/null
 
 echo "Install python dependencies from requirements.txt..."
-sudo pip install -r $HOME_DIR/requirements.txt > /dev/null
+sudo pip install -R $HOME_DIR/requirements.txt > /dev/null
 
 echo "Creating data directory..."
 mkdir $HOME_DIR/data > /dev/null
