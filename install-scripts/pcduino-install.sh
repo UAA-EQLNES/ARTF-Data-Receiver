@@ -4,7 +4,7 @@
 HOME_DIR=/home/ubuntu/ARTF-Data-Receiver
 DUMMY_DATA_PATH=/tmp/dummy.csv
 DUMMY_DB_PATH=$HOME_DIR/data/artf_sensors_demo.sqlite3
-INSTALL_FOLDER=$HOME_DIR/install-scripts/pcduino-installer-assets
+INSTALL_FOLDER=$HOME_DIR/install-scripts/pcduino-assets
 CHART_DESKTOP_CONF=artf-data-viewer.desktop
 LOG_SERVICE=artf-data-receiver
 SERVER_SERVICE=artf-data-viewer
