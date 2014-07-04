@@ -7,13 +7,23 @@
         {% assets "css_all" %}
         <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" />
         {% endassets %}
+        <style>
+        body {
+            min-height: 2000px;
+            padding-top: 70px;
+        }
         </style>
+
     </head>
     <body>
-        <div class="container">
+
+        {% include 'nav.html' %}
+
+        <div class="container-fluid">
             <div class="row">
-                <div class="col col-md-8 col-md-offset-2">
-                    <h2>SMS Data Log</h2>
+                <div class="col col-md-10 col-md-offset-1">
+                    <h3>SMS Data Receiver Log</h3>
+                    <br />
                     <table id="log-table" class="table table-striped">
                         {% include 'log_table.html' %}
                     </table>
