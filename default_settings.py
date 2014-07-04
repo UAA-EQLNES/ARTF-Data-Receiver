@@ -2,7 +2,6 @@
 DEBUG = False
 HOST = '127.0.0.1'
 PORT = 5000
-TEMPLATE = 'flot.html'
 
 SITE_TITLE = "ARTF Data Viewer Demo"
 
