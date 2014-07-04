@@ -19,9 +19,9 @@
         {% include 'nav.html' %}
 
         <div class="container">
-            {% if rc is defined and rc == 0 %}
+            {% if flash is defined and flash == 0 %}
             <div class="alert alert-success" role="alert">The update script ran successfully!</div>
-            {% elif rc is defined  %}
+            {% elif flash is defined  %}
             <div class="alert alert-danger" role="alert">The update script failed!</div>
             {% endif %}
             <div class="jumbotron">
