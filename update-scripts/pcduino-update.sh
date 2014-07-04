@@ -18,4 +18,4 @@ echo "Resarting ARTF Data Viewer Service..."
 sudo stop $VIEWER_SERVICE
 sudo start $VIEWER_SERVICE
 
-echo "Update complete!"
+echo "Update completed! Restart data viewer to see latest changes."
