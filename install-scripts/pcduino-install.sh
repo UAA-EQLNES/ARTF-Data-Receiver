@@ -6,8 +6,8 @@ DUMMY_DATA_PATH=/tmp/dummy.csv
 DUMMY_DB_PATH=$HOME_DIR/data/artf_sensors_demo.sqlite3
 INSTALL_FOLDER=$HOME_DIR/install-scripts/pcduino-assets
 CHART_DESKTOP_CONF=artf-data-viewer.desktop
-LOG_SERVICE=artf-data-receiver
-SERVER_SERVICE=artf-data-viewer
+RECEIVER_SERVICE=artf-data-receiver
+VIEWER_SERVICE=artf-data-viewer
 
 
 echo "Installing ARTF Data Receiver and Viewer..."
@@ -45,13 +45,13 @@ echo "Removing dummy data csv file..."
 rm $DUMMY_DATA_PATH
 
 echo "Adding configuration for data receiver service..."
-sudo cp $INSTALL_FOLDER/$LOG_SERVICE.conf /etc/init/$LOG_SERVICE.conf
+sudo cp $INSTALL_FOLDER/$RECEIVER_SERVICE.conf /etc/init/$RECEIVER_SERVICE.conf
 
 echo "Adding configuration for data viewer service..."
-sudo cp $INSTALL_FOLDER/$SERVER_SERVICE.conf /etc/init/$SERVER_SERVICE.conf
+sudo cp $INSTALL_FOLDER/$VIEWER_SERVICE.conf /etc/init/$VIEWER_SERVICE.conf
 
 echo "Creating desktop icon for data viewer web app..."
 sudo cp $INSTALL_FOLDER/$CHART_DESKTOP_CONF /usr/share/applications/$CHART_DESKTOP_CONF
 
 echo "Starting data viewer service..."
-sudo start $SERVER_SERVICE
+sudo start $VIEWER_SERVICE
