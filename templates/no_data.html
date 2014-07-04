@@ -47,7 +47,7 @@
                 $('#last_updated_at').text(currentDate.toLocaleDateString() + " at " + currentDate.toLocaleTimeString());
 
                 if (data.status == true) {
-                    window.location.href = '/';
+                    window.location.href = window.location.href;
                 }
             });
         }, refreshInterval);

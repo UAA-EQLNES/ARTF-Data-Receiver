@@ -104,12 +104,12 @@ with open(app.config['DATA_LOGGER_ERROR_FILE'], 'a+') as infile:
 
 # Main home page
 @app.route('/')
-def root():
+def show_home():
     sensors = db.fetch_sensors()
     if len(sensors) == 0:
         return render_template('no_data.html',
             site_title=app.config['SITE_TITLE'],
-            refresh_interval=app.config['REFRESH_INTERVAL'] )
+            refresh_interval=app.config['REFRESH_INTERVAL'])
 
     sensor_options = build_sensors_options(sensors, app.config.get('SENSOR_NAMES', {}))
     start_date, end_date = calculate_date_range()
@@ -123,6 +123,20 @@ def root():
         end_date=end_date,
         data=json_data,)
 
+@app.route('/dashboard')
+def show_dashboard():
+    data = db.fetch_summary()
+    if len(data) == 0:
+        return render_template('no_data.html',
+            site_title=app.config['SITE_TITLE'],
+            refresh_interval=app.config['REFRESH_INTERVAL'])
+
+    return render_template('dashboard.html',
+        site_title=app.config['SITE_TITLE'],
+        refresh_interval=app.config['REFRESH_INTERVAL'],
+        sensor_names=app.config.get('SENSOR_NAMES', {}),
+        data=data
+    )
 
 @app.route('/status')
 def show_status():

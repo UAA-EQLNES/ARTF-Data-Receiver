@@ -21,8 +21,8 @@ SQLITE3_DB_PATH = '/home/ubuntu/ARTF-Data-Receiver/data/artf_sensors_demo.sqlite
 #   - Each reading type needs to specify type and unit of measurement
 #   - For, example TYPE UNITS; TYPE UNITS -> distance meters; temperature celsius
 SENSOR_TYPES = (
-    ("d", "Water", "distance meters; temperature celsius"),
-    ("g", "Gate", "distance meters"),
+    ("d", "Water", "distance centimeters; temperature celsius"),
+    ("g", "Gate", "distance centimeters"),
     ("s", "Soil", "moisture percent; temperature celsius"),
 )
 
@@ -44,7 +44,7 @@ SENSOR_NAMES = {
 }
 
 
-# Data logger error logging
+# Data receiver error logging
 DATA_LOGGER_ERROR_FILE = '/home/ubuntu/ARTF-Data-Receiver/log/artf_sensors_demo.log'
 DATA_LOGGER_ERROR_LEVEL = 'INFO'
 DATA_LOGGER_ERROR_FORMAT = '%(levelname)s - %(message)s'

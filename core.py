@@ -156,6 +156,12 @@ class SensorReadingsDataStore(object):
     );
     """
 
+    FETCH_LATEST_QUERY = """
+        SELECT sensor_id, sensor_type, timestamp, value, value_type, value_unit
+        FROM readings
+        WHERE timestamp in (SELECT MAX(timestamp) FROM readings GROUP BY sensor_id);
+    """
+
     def __init__(self, db_name, persistent=False, table=SensorReadingsTable):
         """
         Initializes class
@@ -257,6 +263,31 @@ class SensorReadingsDataStore(object):
         self.sensors = data
 
         return tuple(data)
+
+    def fetch_summary(self):
+        data = {}
+        for row in self._execute_query(self.FETCH_LATEST_QUERY):
+
+            sensor_id = row[self.table.IDX_SENSOR_ID]
+            sensor_type = row[self.table.IDX_SENSOR_TYPE]
+            timestamp = row[self.table.IDX_TIMESTAMP]
+            value = row[self.table.IDX_VALUE]
+            value_type = row[self.table.IDX_VALUE_TYPE]
+            value_unit = row[self.table.IDX_VALUE_UNIT]
+
+            if sensor_id not in data:
+                data[sensor_id] = {
+                    'type': sensor_type,
+                    'timestamp': datetime.fromtimestamp(int(timestamp)).strftime('%m/%d/%Y at %I:%M:%S %p'),
+                    'data': []
+                }
+
+            data[sensor_id]['data'].append({
+                self.table.COL_VALUE: value,
+                self.table.COL_VALUE_TYPE: value_type,
+                self.table.COL_VALUE_UNIT: value_unit
+            })
+        return data
 
     def fetch(self, sensor=None, start_date=None, end_date=None, date_format="%m/%d/%Y"):
         """

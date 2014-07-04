@@ -1,9 +1,7 @@
-<tbody>
-    {% if log|length > 0 %}
-      {% for line in log %}
-      <tr class="text-{{line[0]}}"><td>{{ line[1] }}</td></tr>
-      {% endfor %}
-    {% else %}
-      <tr><td>The SMS data receiver log is currently empty.</td></tr>
-    {% endif %}
-</tbody>
+{% if log|length > 0 %}
+  {% for line in log %}
+  <tr class="text-{{line[0]}}"><td>{{ line[1] }}</td></tr>
+  {% endfor %}
+{% else %}
+  <tr><td>The SMS data receiver log is currently empty.</td></tr>
+{% endif %}
