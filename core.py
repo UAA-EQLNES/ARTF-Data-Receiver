@@ -114,7 +114,7 @@ class SensorReadingsTable(object):
 
     NAME = 'readings'
     COLUMNS = (
-        ('sensor_id', 'INTEGER'),
+        ('sensor_id', 'TEXT'),
         ('sensor_type', 'TEXT'),
         ('timestamp', 'INTEGER'),
         ('value', 'INTEGER'),
