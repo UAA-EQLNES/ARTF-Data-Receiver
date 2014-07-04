@@ -46,7 +46,7 @@ echo "Removing dummy data csv file..."
 rm $DUMMY_DATA_PATH
 
 echo "Update sudo permissions..."
-mv cp $INSTALL_FOLDER/$SUDO_SERVICE_CONF /tmp/$SUDO_SERVICE_CONF
+cp $INSTALL_FOLDER/$SUDO_SERVICE_CONF /tmp/$SUDO_SERVICE_CONF
 sudo chown root:root /tmp/$SUDO_SERVICE_CONF
 sudo chmod 0440 /tmp/$SUDO_SERVICE_CONF
 sudo mv 0440 /tmp/$SUDO_SERVICE_CONF /etc/sudoers.d/$SUDO_SERVICE_CONF
