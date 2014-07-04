@@ -109,7 +109,7 @@ def root():
     if len(sensors) == 0:
         return render_template('no_data.html',
             site_title=app.config['SITE_TITLE'],
-            refresh_interval=app.config['REFRESH_INTERVAL'])
+            refresh_interval=app.config['REFRESH_INTERVAL'] )
 
     sensor_options = build_sensors_options(sensors, app.config.get('SENSOR_NAMES', {}))
     start_date, end_date = calculate_date_range()
