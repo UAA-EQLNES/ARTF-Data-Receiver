@@ -19,3 +19,5 @@ sudo stop $VIEWER_SERVICE
 sudo start $VIEWER_SERVICE
 
 echo "Update completed! Restart data viewer to see latest changes."
+
+read -p "Press [Enter] key to close terminal..."

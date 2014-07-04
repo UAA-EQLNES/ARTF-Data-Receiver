@@ -6,6 +6,7 @@ DUMMY_DATA_PATH=/tmp/dummy.csv
 DUMMY_DB_PATH=$HOME_DIR/data/artf_sensors_demo.sqlite3
 INSTALL_FOLDER=$HOME_DIR/install-scripts/pcduino-assets
 CHART_DESKTOP_CONF=artf-data-viewer.desktop
+UPDATE_DESKTOP_CONF=artf-update.desktop
 RECEIVER_SERVICE=artf-data-receiver
 VIEWER_SERVICE=artf-data-viewer
 
@@ -52,6 +53,10 @@ sudo cp $INSTALL_FOLDER/$VIEWER_SERVICE.conf /etc/init/$VIEWER_SERVICE.conf
 
 echo "Creating desktop icon for data viewer web app..."
 sudo cp $INSTALL_FOLDER/$CHART_DESKTOP_CONF /usr/share/applications/$CHART_DESKTOP_CONF
+
+echo "Creating desktop icon for ARTF software updater..."
+sudo cp $INSTALL_FOLDER/$UPDATE_DESKTOP_CONF /usr/share/applications/$UPDATE_DESKTOP_CONF
+
 
 echo "Starting data viewer service..."
 sudo start $VIEWER_SERVICE

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=ARTF Software Updater
+Comment=Updates ARTF Viewer and Receiver software
+Exec=lxterminal --command "/home/ubuntu/ARTF-Data-Receiver/update-scripts/pcduino-update.sh"
+Terminal=True
+Categories=Development;Engineering;Electronics;
