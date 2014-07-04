@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import json
 import sqlite3
+import subprocess
 
 from flask import Flask, Response, request, render_template
 from flask_assets import Environment, Bundle
@@ -137,6 +138,16 @@ def show_dashboard():
         sensor_names=app.config.get('SENSOR_NAMES', {}),
         data=data
     )
+
+
+@app.route('/updates', methods=['GET', 'POST'])
+def show_updates():
+    if request.method == 'POST':
+        rc = subprocess.call(app.config['UPDATE_SCRIPT_PATH'])
+        return render_template('update.html', site_title=app.config['SITE_TITLE'], flash=rc)
+    else:
+        return render_template('update.html', site_title=app.config['SITE_TITLE'])
+
 
 @app.route('/status')
 def show_status():

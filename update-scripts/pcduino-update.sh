@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 # Settings
 HOME_DIR=/home/ubuntu/ARTF-Data-Receiver
