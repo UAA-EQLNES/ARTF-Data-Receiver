@@ -74,12 +74,12 @@ js_assets = Bundle(
     output='js/min.js')
 assets.register('js_all', js_assets)
 
-# Optimize Log javascript files
-js_log_assets = Bundle(
+# Optimize jquery dependency
+js_jquery_assets = Bundle(
     'vendor/js/jquery.js',
     filters='rjsmin',
     output='js/jquery.min.js')
-assets.register('js_log', js_log_assets)
+assets.register('js_jquery', js_jquery_assets)
 
 
 # Optimize CSS files
@@ -98,17 +98,22 @@ assets.register('css_all', css_assets)
 db = SensorReadingsDataStore(app.config['SQLITE3_DB_PATH'])
 db.setup()
 
+# Initialize log file if does not exist
+with open(app.config['DATA_LOGGER_ERROR_FILE'], 'a+') as infile:
+    pass
 
 # Main home page
 @app.route('/')
 def root():
     sensors = db.fetch_sensors()
+    if len(sensors) == 0:
+        return render_template('no_data.html', site_title=app.config['SITE_TITLE'])
+
     sensor_options = build_sensors_options(sensors, app.config.get('SENSOR_NAMES', {}))
     start_date, end_date = calculate_date_range()
     data = db.fetch(sensors[0], start_date, end_date)
     json_data = json.dumps(data)
-    return render_template(
-        app.config['TEMPLATE'],
+    return render_template('main.html',
         site_title=app.config['SITE_TITLE'],
         refresh_interval=app.config['REFRESH_INTERVAL'],
         sensor_options=sensor_options,
@@ -125,9 +130,17 @@ def show_status():
         log=read_log_file())
 
 
+@app.route('/api/check-for-data', methods=['GET'])
+def api_check_data():
+    sensors = db.fetch_sensors()
+    data = {'status': True}
+    if len(sensors) == 0:
+        data['status'] = False
+    return Response(json.dumps(data), mimetype='application/json')
+
 # Endpoint to retrieve data in JSON format
 @app.route('/api/data', methods=['GET'])
-def fetch_data():
+def api_fetch_data():
     sensor = request.args.get('sensor', None)
     start_date = request.args.get('start-date', None)
     end_date = request.args.get('end-date', None)
@@ -137,7 +150,7 @@ def fetch_data():
 
 # Endpoint to retrieve log data in JSON format
 @app.route('/api/status', methods=['GET'])
-def fetch_status():
+def api_fetch_status():
     return render_template('log_table.html', log=read_log_file())
 
 

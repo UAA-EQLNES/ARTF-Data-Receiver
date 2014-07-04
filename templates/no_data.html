@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{site_title}}</title>
+        {% assets "css_all" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}" type="text/css" />
+        {% endassets %}
+        <style>
+        body {
+            min-height: 2000px;
+            padding-top: 90px;
+        }
+        </style>
+
+    </head>
+    <body>
+
+        {% include 'nav.html' %}
+
+        <div class="container">
+            <div class="jumbotron">
+                <h1><small>Welcome to the</small><br />{{site_title}}!</h1>
+                <p>You are seeing this page because you don't have any data collected. Don't worry, the system will check for data every 20 minutes
+                    and update the page when data is received.</p>
+
+                <p>You can manually by reloading the page or pressing the "Check for data" button below.</p>
+
+                <p><a class="btn btn-primary btn-lg" role="button" href="/">Check for data</a></p>
+            </div>
+        </div>
+
+        {% assets "js_jquery" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+
+        <script>
+        // Refresh every X minutes. Need to use millis.
+        var refreshInterval = 2 * 60 * 1000;
+        setInterval(function() {
+            $.getJSON('/api/check-for-data', function(data) {
+                if (data.status == true) {
+                    window.location.href = '/';
+                }
+            });
+        }, refreshInterval);
+        </script>
+    </body>
+</html>
