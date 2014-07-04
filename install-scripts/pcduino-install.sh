@@ -27,13 +27,13 @@ echo "Upgrading pip..."
 sudo pip install upgrade pip > /dev/null
 
 echo "Install python dependencies from requirements.txt..."
-sudo pip install -r requirements.txt > /dev/null
+sudo pip install -r r$HOME_DIR/requirements.txt > /dev/null
 
 echo "Creating data directory..."
-mkdir $HOME_DIR/data
+mkdir $HOME_DIR/data > /dev/null
 
 echo "Creating log directory..."
-mkdir $HOME_DIR/log
+mkdir $HOME_DIR/log > /dev/null
 
 echo "Generating dummy data for demo..."
 python $HOME_DIR/dummy_data.py -o $DUMMY_DATA_PATH
