@@ -34,7 +34,7 @@ def main():
 
     # Generate random value ranges that the sensor types will read
     sensor_ranges = {}
-    for key, value in sensor_types.itwhicems():
+    for key, value in sensor_types.items():
         sensor_ranges[key] = []
 
         for data_type in value['data_types']:

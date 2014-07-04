@@ -10,7 +10,7 @@ SITE_TITLE = "ARTF Sensors Visualization Demo"
 REFRESH_INTERVAL = 20
 
 # Database location
-SQLITE3_DB_PATH = 'data/artf_sensors_demo.sqlite3'
+SQLITE3_DB_PATH = '/home/ubuntu/ARTF-Data-Receiver/data/artf_sensors_demo.sqlite3'
 
 
 # Sensor type mapping
@@ -46,6 +46,6 @@ SENSOR_NAMES = {
 
 
 # Data logger error logging
-DATA_LOGGER_ERROR_FILE = 'log/artf_sensors_demo.log'
+DATA_LOGGER_ERROR_FILE = '/home/ubuntu/ARTF-Data-Receiver/log/artf_sensors_demo.log'
 DATA_LOGGER_ERROR_LEVEL = 'INFO'
 DATA_LOGGER_ERROR_FORMAT = '%(levelname)s - %(message)s'
