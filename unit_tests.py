@@ -47,7 +47,11 @@ class TestSMSReader(unittest.TestCase):
         result_text_msg = self.sms_reader.extract_sms(sms)
         self.assertIsNone(result_text_msg)
 
-
+    def test_extract_positive_timediff(self):
+        sms = "\r\n+CMT: \"+12223334444\",\"\",\"14/05/30,00:13:34+32\"\r\n1399735312 100 10;20 200 20;40 400 40;65 600 60\r\n"
+        result_text_msg = self.sms_reader.extract_sms(sms)
+        expected_text_msg = TextMsg("+12223334444", "14/05/30,00:13:34+32", "1399735312 100 10;20 200 20;40 400 40;65 600 60")
+        self.assertEqual(result_text_msg, expected_text_msg)
 class TestUtils(unittest.TestCase):
 
     def test_util_create_logger_from_config(self):
@@ -93,13 +97,13 @@ class TestDataParser(unittest.TestCase):
 
     def test_valid_readings(self):
         expected_readings = [
-            ["+12223334444", 'Water', 1399735312, 100, 'distance', 'meters'],
+            ["+12223334444", 'Water', 1399735312, 100, 'distance', 'centimeters'],
             ["+12223334444", 'Water', 1399735312, 10, 'temperature', 'celsius'],
-            ["+12223334444", 'Water', 1399736512, 200, 'distance', 'meters'],
+            ["+12223334444", 'Water', 1399736512, 200, 'distance', 'centimeters'],
             ["+12223334444", 'Water', 1399736512, 20, 'temperature', 'celsius'],
-            ["+12223334444", 'Water', 1399737712, 400, 'distance', 'meters'],
+            ["+12223334444", 'Water', 1399737712, 400, 'distance', 'centimeters'],
             ["+12223334444", 'Water', 1399737712, 40, 'temperature', 'celsius'],
-            ["+12223334444", 'Water', 1399739212, 600, 'distance', 'meters'],
+            ["+12223334444", 'Water', 1399739212, 600, 'distance', 'centimeters'],
             ["+12223334444", 'Water', 1399739212, 60, 'temperature', 'celsius'],
         ]
         text_msg = TextMsg("+12223334444", "14/05/30,00:13:34-32", "d 1399735312 100 10;20 200 20;40 400 40;65 600 60")
@@ -135,9 +139,9 @@ class TestSensorReadingsDataStore(unittest.TestCase):
 
     def test_valid_readings(self):
         readings = [
-            ["+12223334444", 'distance', 1399735312, 100, 'distance', 'meters'],
+            ["+12223334444", 'distance', 1399735312, 100, 'distance', 'centimeters'],
             ["+12223334444", 'distance', 1399735312, 20, 'temperature', 'celsius'],
-            ["+12223334444", 'gate', 1399735312, 100, 'distance', 'meters'],
+            ["+12223334444", 'gate', 1399735312, 100, 'distance', 'centimeters'],
             ["+12223334444", 'soil', 1399737712, 90, 'moisture', 'percent'],
             ["+12223334444", 'soil', 1399737712, 30, 'temperature', 'celsius'],
         ]
@@ -145,7 +149,7 @@ class TestSensorReadingsDataStore(unittest.TestCase):
 
     def test_invalid_readings(self):
         readings = [
-            ["+12223334444", 'distance', 1399735312, 100, 'distance', 'meters'],
+            ["+12223334444", 'distance', 1399735312, 100, 'distance', 'centimeters'],
             ["+12223334444", 'distance', 1399735312, 20, 'temperature', 'celsius'],
             ["+12223334444", 'gate', 1399735312, 100, 'distance'],
             ["+12223334444", 'soil', 1399737712, 90, 'moisture', 'percent'],

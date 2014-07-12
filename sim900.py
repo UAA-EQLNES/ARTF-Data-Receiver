@@ -107,7 +107,7 @@ class SMSReader(object):
 
     NOT_FOUND = -1
 
-    MSG_FORMAT = "\+CMT: \"(\+\d{11})\",\"\",\"(\d{2}\/\d{2}\/\d{2},\d{2}:\d{2}:\d{2}\-\d{2})\"\r\n(.*)\r\n"
+    MSG_FORMAT = "\+CMT: \"(\+\d{11})\",\"\",\"(\d{2}\/\d{2}\/\d{2},\d{2}:\d{2}:\d{2}[\-\+]\d{2})\"\r\n(.*)\r\n"
 
     def __init__(self, sim900):
         self.sim900 = sim900
