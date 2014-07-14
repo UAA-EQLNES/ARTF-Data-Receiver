@@ -60,6 +60,32 @@ class DataParser(object):
         """
         Parses bridge sensor messages.
 
+        Can handle multiple sets of readings in on message if delimited by "=" sign.
+
+        Args:
+            sensor_id: Unique sensor id. For GSM shields, can be phone number
+            message: Formatted message received from sensor that contains data
+
+        Returns:
+            List of parsed readings. Each reading contains:
+
+            [0] = Sensor id
+            [1] = Sensor type
+            [2] = Unix timestamp
+            [3] = Value
+            [4] = Value type
+            [5] = Value unit
+        """
+        messages = message.split('=')
+        readings = []
+        for a_message in messages:
+            readings.extend(self._parse(sensor_id, a_message))
+        return readings
+
+    def _parse(self, sensor_id, message):
+        """
+        Helper to parses bridge sensor messages.
+
         Args:
             sensor_id: Unique sensor id. For GSM shields, can be phone number
             message: Formatted message received from sensor that contains data
