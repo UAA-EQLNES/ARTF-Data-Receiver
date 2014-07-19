@@ -33,7 +33,7 @@ class DataParser(object):
         For example may have sensor may send ultrasonic and themistor data back
     """
 
-    READING_FORMAT_TEMPLATE = "^\d+ {0}(?:;\d+ {0})+$"
+    READING_FORMAT_TEMPLATE = "^\-?\d+ {0}(?:;\-?\d+ {0})+$"
     SECONDS_PER_MINUTE = 60
     READING_DELIM = ';'
     DATA_DELIM = ' '
@@ -53,7 +53,7 @@ class DataParser(object):
         self.data_format = {}
         for key, value in self.sensor_types_map.items():
             reading_re = re.compile(DataParser.READING_FORMAT_TEMPLATE.format(
-                ' '.join(['\d+' for x in xrange(len(value['data_types']))])))
+                ' '.join(['\-?\d+' for x in xrange(len(value['data_types']))])))
             self.data_format[key] = reading_re
 
     def parse(self, sensor_id, message):

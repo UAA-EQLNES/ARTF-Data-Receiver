@@ -52,6 +52,7 @@ class TestSMSReader(unittest.TestCase):
         result_text_msg = self.sms_reader.extract_sms(sms)
         expected_text_msg = TextMsg("+12223334444", "14/05/30,00:13:34+32", "1399735312 100 10;20 200 20;40 400 40;65 600 60")
         self.assertEqual(result_text_msg, expected_text_msg)
+
 class TestUtils(unittest.TestCase):
 
     def test_util_create_logger_from_config(self):
@@ -109,6 +110,22 @@ class TestDataParser(unittest.TestCase):
         text_msg = TextMsg("+12223334444", "14/05/30,00:13:34-32", "d 1399735312 100 10;20 200 20;40 400 40;65 600 60")
         readings = self.parser.parse(text_msg.phone_number, text_msg.message)
         self.assertItemsEqual(readings, expected_readings)
+
+    def test_valid_negative_readings(self):
+        expected_readings = [
+            ["+12223334444", 'Water', 1399735312, -100, 'distance', 'centimeters'],
+            ["+12223334444", 'Water', 1399735312, 10, 'temperature', 'celsius'],
+            ["+12223334444", 'Water', 1399736512, 200, 'distance', 'centimeters'],
+            ["+12223334444", 'Water', 1399736512, -20, 'temperature', 'celsius'],
+            ["+12223334444", 'Water', 1399737712, 400, 'distance', 'centimeters'],
+            ["+12223334444", 'Water', 1399737712, 40, 'temperature', 'celsius'],
+            ["+12223334444", 'Water', 1399739212, 600, 'distance', 'centimeters'],
+            ["+12223334444", 'Water', 1399739212, 60, 'temperature', 'celsius'],
+        ]
+        text_msg = TextMsg("+12223334444", "14/05/30,00:13:34-32", "d 1399735312 -100 10;20 200 -20;40 400 40;65 600 60")
+        readings = self.parser.parse(text_msg.phone_number, text_msg.message)
+        self.assertItemsEqual(readings, expected_readings)
+
 
     def test_multiple_valid_readings(self):
         expected_readings = [
