@@ -232,7 +232,7 @@ like the following:
 This file is useful for making the sure the data logger is correctly
 communicating with the remote sensors.
 
-## Appendix A: Create a bootable SD card image from pcDuino2
+## Appendix A: Create a bootable SD card
 
 This [tutorial](http://www.pcduino.com/for-image-20130513-how-to-backup-nand-to-sd-and-make-sd-bootable/)
 describes how to create a bootable SD card image from the pcDuino2.
