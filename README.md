@@ -57,7 +57,7 @@ In the terminal, run the following commands:
 
 Once the program starts, type:
 
-    AT+IPR=1115200
+    AT+IPR=115200
 
 If you get an `OK`, type:
 
