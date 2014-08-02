@@ -37,9 +37,9 @@ Test if the installation was successful by opening Chromium and navigating to
 **Step 4**
 
 The next few steps assume that the LinkSprite Sim900 GSM shield is using the
-default baudrate of 19200.
+default baud-rate of 19200.
 
-The data receiver expects the GSM shield to listen at a baudrate of 115200. Any
+The data receiver expects the GSM shield to listen at a baud-rate of 115200. Any
 slower and incoming text messages may become garbled.
 
 Make sure the jumpers on the shield are set to hardware serial and that the
@@ -84,8 +84,8 @@ a simple script.
 ## 2. Configuration
 
 The default settings used by the data receiver and viewer application are
-located in the file `default_settings.py`. The default settings are for the d
-emo application that uses dummy data. Do not edit the file directly.
+located in the file `default_settings.py`. The default settings are for the demo
+application that uses dummy data. Do not edit the file directly.
 
 Instead create a file called `settings.cfg` in the same directory to override
 the defaults.
@@ -100,14 +100,14 @@ server to be accessible only through pcDuino2 web browser.
 Change the the IP address to the one assigned by your DHCP server to make it
 viewable by machines on the local network.
 
-Alternatively, you using `0.0.0.0` should also do the trick.
+Alternatively, using `0.0.0.0` should also do the trick.
 
 **PORT**
 
 This is the port number that the server will bind to. `5000` is used by default
  since it does not require admin privileges.
 
-You can this to use port `80`, but the start up configuration file will need to
+You can use port `80`, but the start up configuration file will also need to be
 adjusted. This file can be found at `/etc/init/artf-data-viewer.conf`.
 You will need to remove the following lines:
 
@@ -115,14 +115,14 @@ You will need to remove the following lines:
     setgid ubuntu
 
 The settings will not take effect until the pcDuino2 is restarted or you
-manually restart the service. This can be using this command:
+manually restart the service. This can done be using this command:
 
     sudo restart artf-data-viewer
 
 
 **SITE_TITLE**
 
-This is displayed on the top of the browser
+This is displayed on the tab of the browser
 
 
 **REFRESH_INTERVAL**
@@ -155,7 +155,7 @@ The demo application uses the following sensor types:
     )
 
 The first parameter is the short identifier sent by your remote sensors. The
- second parameter is human-readable label that is stored in the database. The
+ second parameter is a human-readable label that is stored in the database. The
  third parameter is a semi-colon separated list that contains the type of
  measurement and the unit of measure for each sensor reading captured and
  sent back.
@@ -168,7 +168,7 @@ reject incoming data or label it incorrectly.
 **SENSOR_NAMES**
 
 This is an optional field. It's only purpose is to provide human-readable names
-to better identify remote sensors
+to better identify remote sensors.
 
     SENSOR_NAMES = {
         'sensor_0': 'Machu Picchu Sensor',
@@ -200,19 +200,19 @@ communicating with the remote sensors.
 
 These services will start on boot, so there is no need to start them yourself.
 
-**Start the data viewer server**
+**Start the data viewer**
 
 `sudo start artf-data-viewer`
 
-**Restart the data viewer server**
+**Restart the data viewer**
 
 `sudo restart artf-data-viewer`
 
-**Stop the data viewer server**
+**Stop the data viewer**
 
 `sudo stop artf-data-viewer`
 
-**Show the status of the data viewer server**
+**Show the status of the data viewer**
 
 `sudo status artf-data-viewer`
 
@@ -220,7 +220,7 @@ These services will start on boot, so there is no need to start them yourself.
 
 `sudo start artf-data-receiver`
 
-**Restart the visualization server**
+**Restart the data receiver**
 
 `sudo restart artf-data-receiver`
 
