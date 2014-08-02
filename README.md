@@ -81,43 +81,7 @@ a simple script.
 
 [Click here for instructions on how to expand the NAND flash.](http://www.pcduino.com/how-to-enable-full-4gb-nand-flash-memory-on-new-batch-of-pcduino/)
 
-## 2. Commands to manage services
-
-These services will start on boot, so there is no need to start them yourself.
-
-**Start the data viewer server**
-
-`sudo start artf-data-viewer`
-
-**Restart the data viewer server**
-
-`sudo restart artf-data-viewer`
-
-**Stop the data viewer server**
-
-`sudo stop artf-data-viewer`
-
-**Show the status of the data viewer server**
-
-`sudo status artf-data-viewer`
-
-**Start the data receiver**
-
-`sudo start artf-data-receiver`
-
-**Restart the visualization server**
-
-`sudo restart artf-data-receiver`
-
-**Stop the data receiver**
-
-`sudo stop artf-data-receiver`
-
-**Show the status of the data receiver**
-
-`sudo status artf-data-receiver`
-
-## 3. Configuration
+## 2. Configuration
 
 The default settings used by the data receiver and viewer application are
 located in the file `default_settings.py`. The default settings are for the d
@@ -232,13 +196,50 @@ like the following:
 This file is useful for making the sure the data logger is correctly
 communicating with the remote sensors.
 
+## 3. Commands to manage services
+
+These services will start on boot, so there is no need to start them yourself.
+
+**Start the data viewer server**
+
+`sudo start artf-data-viewer`
+
+**Restart the data viewer server**
+
+`sudo restart artf-data-viewer`
+
+**Stop the data viewer server**
+
+`sudo stop artf-data-viewer`
+
+**Show the status of the data viewer server**
+
+`sudo status artf-data-viewer`
+
+**Start the data receiver**
+
+`sudo start artf-data-receiver`
+
+**Restart the visualization server**
+
+`sudo restart artf-data-receiver`
+
+**Stop the data receiver**
+
+`sudo stop artf-data-receiver`
+
+**Show the status of the data receiver**
+
+`sudo status artf-data-receiver`
+
 ## Appendix A: Create a bootable SD card
 
 This [tutorial](http://www.pcduino.com/for-image-20130513-how-to-backup-nand-to-sd-and-make-sd-bootable/)
 describes how to create a bootable SD card image from the pcDuino2.
 
-From there, you may want to save time and reuse image for with other pcDuino2s.
-One option is to copy the disc image to a server so that it can be downloaded
+From there, you may want to save time and reuse image with other pcDuino2s.
+
+One option is to copy the disc image to a computer so that it can be downloaded
 and burned to new SD cards later.
 
 The following instructions are for OSX.
@@ -249,8 +250,7 @@ Insert the microSD card that contains the disc image to be copied.
 
 **Step 2**
 
-
-Open the OSX Terminal app
+Open the OSX Terminal app.
 
 **Step 3**
 
@@ -278,11 +278,11 @@ For example `/dev/rdisk1`.
 
 ## Appendix B: Install from SD card
 
-The pcDuino2 has the option to boot from an SD card. A disc image with the
-installed software is available, but is out of date.
+The pcDuino2 has the option to boot from an SD card.
 
 These instruction are for OSX since the procedure has not been tested on Windows
-or Linux yet. The process is similar to what you'd do with a Raspberry Pi image.
+or Linux yet. The process is similar to what you'd do with a Raspberry Pi disc
+image.
 
 These instructions use [Keka](http://www.kekaosx.com/en/) to unzip the disc image.
 
@@ -293,7 +293,7 @@ Download the `artf-receiver.img.xz` to your Desktop.
 **Step 2**
 
 Unzip the file with Keka. Right click on the `artf-receiver.img.xz` file. Select
-"Open With" and find Keka.
+`Open With` and find Keka.
 
 The image is 4GB uncompressed, so it will take a while to complete.
 
@@ -304,7 +304,7 @@ Disk Utility application
 
 **Step 4**
 
-Open the OSX Terminal app
+Open the OSX Terminal app.
 
 **Step 5**
 
@@ -330,7 +330,7 @@ For example `/dev/disk1`.
 
 **Step 8**
 
-To unmount the microSD card disk, type:
+To unmount the microSD card, type:
 
     diskutil unmountDisk /dev/diskX
 
@@ -367,47 +367,3 @@ the on-board NAND flash.
 
 Test if the installation was successful by opening Chromium and navigating to
 `http://localhost:5000`. You should see a demo of the dashboard with dummy data.
-
-
-**Step 15**
-
-Next, the LinkSprite Sim900 GSM shield needs to be configured to listen 115200.
-Before that can be done, the `artf-data-receiver` service must be turned off.
-
-Open a LXTerminal (CTRL+ALT+T) and run the command:
-
-    sudo stop artf-data-receiver
-
-
-**Step 16**
-
-Make sure the jumpers on the shield are set to hardware serial and that the
-red light is on. In addition, the shield will need a SIM card with text message
-plan.
-
-**Step 17**
-
-In the terminal, run the following commands:
-
-    cd ~/ARTF-Data-Receiver
-    python cmd_tester.py -b 19200
-
-**Step 18**
-
-Once the program starts, type:
-
-    AT+IPR=1115200
-
-If you get an `OK`, type:
-
-    exit
-
-**Step 19**
-
-Turn on the `artf-data-receiver` service:
-
-    sudo start artf-data-receiver
-
-You can test that the receiver is working by sending a text message to the
-receiver. All incoming messages are logged to a text file. For your convenience
-the file can be viewed from the web frontend.
