@@ -81,7 +81,7 @@ a simple script.
 
 [Click here for instructions on how to expand the NAND flash.](http://www.pcduino.com/how-to-enable-full-4gb-nand-flash-memory-on-new-batch-of-pcduino/)
 
-## 2. Commands to manage the data receiver and viewer services
+## 2. Commands to manage services
 
 These services will start on boot, so there is no need to start them yourself.
 
@@ -232,7 +232,51 @@ like the following:
 This file is useful for making the sure the data logger is correctly
 communicating with the remote sensors.
 
-## Appendix A: Install from SD card
+## Appendix A: Create a bootable SD card image from pcDuino2
+
+This [tutorial](http://www.pcduino.com/for-image-20130513-how-to-backup-nand-to-sd-and-make-sd-bootable/)
+describes how to create a bootable SD card image from the pcDuino2.
+
+From there, you may want to save time and reuse image for with other pcDuino2s.
+One option is to copy the disc image to a server so that it can be downloaded
+and burned to new SD cards later.
+
+The following instructions are for OSX.
+
+**Step 1**
+
+Insert the microSD card that contains the disc image to be copied.
+
+**Step 2**
+
+
+Open the OSX Terminal app
+
+**Step 3**
+
+Type the following to get list of disks on your system:
+
+    diskutil list
+
+**Step 4**
+
+Find the path to the microSD. It should be `/dev/disk1` if you aren't using any
+other USB/SD drives.
+
+There should also be a path to your hard drive. It should be `/dev/disk0`. Make
+sure you do not select the hard drive disk or you could corrupt your operating
+system. Be very careful here.
+
+**Step 5**
+
+For step 6, replace `/dev/rdiskX` with the disk you located in step 4.
+For example `/dev/rdisk1`.
+
+**Step 6**
+
+    sudo dd if=/dev/rdiskX of=~/Desktop/artf-data-receiver.img bs=1m
+
+## Appendix B: Install from SD card
 
 The pcDuino2 has the option to boot from an SD card. A disc image with the
 installed software is available, but is out of date.
